@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://rp2v7chhnwt2"]
+
+[ext_resource type="Script" path="res://Enemy/Enemy.gd" id="1_bf4i6"]
+[ext_resource type="Texture2D" uid="uid://bsr6x553q4blp" path="res://Assets/IMG_1115 (1).PNG" id="2_yk1jd"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_bf4i6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0633239, 0.0633239)
+texture = ExtResource("2_yk1jd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-57, 46, -45, 12, -51, -24, -37, -50, -28, -33, -15, -46, -6, -30, -8, -22, 28, -19, 30, -36, 12, -54, 31, -69, 50, -51, 60, -26, 47, 1, 53, 64, -50, 62)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-1, -30, 26, -27, 12, -57, 33, -66, 55, -37, 53, -9, 46, 13, 49, 60, -40, 64, -64, 45, -47, 15, -52, -22, -35, -51, -25, -39, -14, -45)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
